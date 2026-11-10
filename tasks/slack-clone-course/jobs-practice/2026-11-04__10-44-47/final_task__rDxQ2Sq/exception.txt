@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 351, in run
+    await self._prepare()
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 389, in _prepare
+    await self._setup_agent()
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 1180, in _setup_agent
+    await asyncio.wait_for(
+    ...<2 lines>...
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 622, in setup
+    await self.install(environment)
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/mini_swe_agent_local.py", line 74, in install
+    await self.exec_as_agent(
+    ...<14 lines>...
+    )
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 592, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+        environment, command, env=env, cwd=cwd, timeout_sec=timeout_sec
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 559, in _exec
+    raise self._classify_exec_error(command, result)
+harbor.agents.installed.base.NetworkConnectionError: Command failed (exit 6): set -euo pipefail; if ! command -v uv >/dev/null 2>&1; then  curl -LsSf https://astral.sh/uv/0.7.13/install.sh | sh; fi && if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null; then  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"; fi && if [ -f "$HOME/.local/bin/env" ]; then source "$HOME/.local/bin/env"; fi && export PATH="$HOME/.local/bin:$PATH" && uv tool install /tmp/mini-swe-agent-src --with 'litellm[proxy]' && mini-swe-agent --help
+stdout: curl: (6) Could not resolve host: releases.astral.sh
+
+stderr: None

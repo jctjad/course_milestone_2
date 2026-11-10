@@ -1,0 +1,19 @@
+{
+    "task": {
+        "path": "tasks/slack-clone-course/course-staff-files/final_task"
+    },
+    "trial_name": "final_task__qqMsjip",
+    "trials_dir": "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/tasks/slack-clone-course/jobs/2026-11-06__15-53-35",
+    "agent": {
+        "name": "mini_swe_agent_local:MiniSweAgentLocal",
+        "model_name": "openai/gpt-5.6-luna",
+        "kwargs": {
+            "config_file": "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/tasks/slack-clone-course/course-staff-files/final_task/agent_llm_config/mswea-openai-gpt-5.6-luna-no-reasoning.yaml",
+            "cost_limit": 3
+        }
+    },
+    "verifier": {
+        "disable": true
+    },
+    "job_id": "e9f92dc7-cd56-4c81-a27e-fe8c0e46d504"
+}

@@ -1,0 +1,109 @@
+{
+    "id": "6cdedcf7-5ec2-4529-a5e1-498ce2f6bdf1",
+    "task_name": "abundant/slack-clone",
+    "trial_name": "final_task__9A7adzM",
+    "trial_uri": "file:///Users/jacob/Desktop/Academics/School/SD%20w%20AI/course_milestone_2-main/tasks/slack-clone-course/jobs/2026-11-03__10-50-53/final_task__9A7adzM",
+    "task_id": {
+        "path": "tasks/slack-clone-course/course-staff-files/final_task"
+    },
+    "source": null,
+    "task_checksum": "8a0c7a43a81f5f9fd692bf5e5a6222da67365b25ebf3799005e98d81b6da840b",
+    "config": {
+        "task": {
+            "path": "tasks/slack-clone-course/course-staff-files/final_task",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "final_task__9A7adzM",
+        "trials_dir": "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/tasks/slack-clone-course/jobs/2026-11-03__10-50-53",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mini_swe_agent_local:MiniSweAgentLocal",
+            "import_path": null,
+            "model_name": "openai/gpt-5.6-luna",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "config_file": "/Users/jacob/Desktop/Academics/School/SD w AI/course_milestone_2-main/tasks/slack-clone-course/course-staff-files/final_task/agent_llm_config/mswea-openai-gpt-5.6-luna-no-reasoning.yaml",
+                "cost_limit": 3
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "e598c793-eb3b-4f17-846c-eea5382cb2cd"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent-local",
+        "version": "2.4.6",
+        "model_info": {
+            "name": "gpt-5.6-luna",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 3760087,
+        "n_cache_tokens": 3683888,
+        "n_output_tokens": 26706,
+        "cost_usd": 0.86247106,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": null,
+    "started_at": "2026-11-03T15:50:55.191602Z",
+    "finished_at": "2026-11-03T16:03:40.210912Z",
+    "environment_setup": {
+        "started_at": "2026-11-03T15:50:55.239597Z",
+        "finished_at": "2026-11-03T15:51:23.257457Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-03T15:51:23.257761Z",
+        "finished_at": "2026-11-03T15:51:47.797614Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-03T15:51:47.799319Z",
+        "finished_at": "2026-11-03T16:03:33.306066Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

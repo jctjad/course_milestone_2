@@ -1,0 +1,53 @@
+2026-11-06__09-10-26 and 2026-11-06__09-11-01: first graded Run 1.1 attempt, discarded on 2026-11-06.
+Reasons: repeat 2 got around score_only by running verbose copies of the checks in /tmp (23 times);
+C1.4 was flaky because ws.py counted events from before the subscribe (fixed in basics, C and D).
+
+2026-11-06__10-34-00 and 2026-11-06__10-34-25: second Run 1.1 attempt (score_only), discarded.
+  Both submitted 24/24 C (6.5 min / $0.54 and 5.1 min / $0.49), but repeat 2 (10-34-25) worked around
+  score_only: it first ran `FEEDBACK=verbose bash check_basics.sh` (no effect, lib.sh sets the mode itself),
+  then ran the checks under `bash -x`, whose trace printed every `bad C2.x '<message>'` call in full, so it
+  had verbose feedback for C.2 to C.5. Repeat 1 tried `bash -x` once but its grep matched nothing.
+  Fix: every checks/lib.sh now starts with `{ set +xv; } 2>/dev/null` (same in both modes), so tracing shows
+  no rule messages and not the FEEDBACK line. C/D/E re-frozen; Run 1.1 redone with both repeats.
+
+2026-11-06__12-22-49 and 2026-11-06__12-23-14: first Run 1.3 attempt (score_only), interrupted part way by the
+  user (CancelledError, no result). Not a spec problem. Their two containers were left running and were removed.
+  Run 1.3 redone from a fresh setup.
+
+2026-11-09__11-00-56: practice Run 5.3 (verbose, all of A-E). Stopped at the $3 cost limit after 25.6 min
+  (164 steps, context grew to ~143k tokens). A 19/19 + A0 4/4, B 26/26, C 24/24 and D 12/12 passed in-run; E
+  only reached E.1 (check cut off at 30 s five times). The agent read the check scripts (~115k chars) instead of
+  the spec files (only README and A-2 read), ignored the README's SQLite store rule and kept everything in one
+  JSON file (13.8 MB after the C file tests, lost writes across nodes), and ran three idle `redis-cli subscribe`
+  processes instead of using Redis for fan-out. Confirms the A and B checks work on a full app.
+
+2026-11-09__11-49-40  Practice 5.3 #2 (after A1.8 shared store + "Save budget for E"). LimitsExceeded at $3.02, 27 min,
+  153 steps. Used SQLite (A1.8 caught /app/huddle.db). In-run: A1-A4 20/20 (never ran check_A_0), B 26/26, D 11/12
+  (D1.3), C 19/24 (C4.5 failing, C.5 not started), E not started; never ran timer.sh. Final app CRASHES on a fresh
+  container: agent moved the DB to /var/lib/huddle and made the folder by hand; start.sh never creates it -> hidden
+  tests would score 0. B5.2/B5.3 also fail on the final app (its own WebSocket bug). Fixes: A1.8 fresh-start test;
+  combined READMEs order D -> C.1 -> E -> C.2-C.5.
+
+2026-11-09__14-13-26  Practice 5.3 #3 (after A1.8 fresh start + order D -> C.1 -> E -> C.2-5). LimitsExceeded $3.02 at
+  17 min, 167 steps. Order ignored (did A, B, all of C, then D; E never started) because mini-swe-agent shows only the
+  first and last 5,000 chars of any output over 10,000: the 15.4k README's middle (Order of work at chars 8,052-11,333,
+  budget, cost advice) was never seen; same in practice #1 and #2. Fresh container: app starts (start.sh does mkdir
+  -p /var/lib/huddle). Fresh rerun: A 24/24, B 25/26 (B6.1), C 23/24 (C4.5), D 5/12 (WebSocket subscribed frames), E 0.
+
+2026-11-09__14-59-52  Practice 5.3 #4 ($6 cap, compact README, "Get every rule right"). LimitsExceeded $6.02 at 31 min,
+  237 steps. Read the whole README and followed the order A, B, D, C.1, E, C.2-5; every check passed at least once.
+  Lost ~10 min / 40 steps on A1 (own bug: SQLite connection leaked after IntegrityError -> later requests hang,
+  check showed only "got 000"). Ran out during the final checks with E1.4 failing. Fresh-container rerun: A 24/24,
+  B 26/26, C 24/24, D 7/12, E ~18/23: app replays every past user.updated to each new WebSocket (global_seen=0), so
+  after C.5 the D/E listeners fill with old frames ("no subscribed frame"). App starts on a fresh machine (A1.8 OK).
+
+2026-11-09__15-46-54  Practice 5.3 #5 ($10 cap; after-C.5 rerun line, 000 note). Submitted itself at $5.38, 25 min, 241 steps,
+  with every check green in its final sweep. Fresh-container rerun x3: 109/109 every time. E.3 failures late in the
+  run were real (C.2 DM channels broke the IRC pump), fixed by the agent. First fully clean 5.3 practice.
+
+2026-11-09__16-23-00  Practice 5.1 #1 (first real use of regression.sh). Submitted itself at $3.75, 26 min, 185 steps.
+  regression.sh drove A/B from 43 broken to 0 in ~9 min; never cut off; agent never read it; "not checked" only in the
+  first 3 runs (app slow). D.4 cut off at 30 s 3x (app slow, fixed). Fresh rerun x3: regression 0 broken (9-10 s),
+  C 24/24, D 12/12, E 23/23 on pass 1; E3.4/E3.5 fail on passes 2-3: the app's IRC pump scans all events from id 0
+  at process start, which gets slower than 2 s as data grows. In the run the agent saw E3 fail in its final sweep,
+  reran it until it passed, and submitted.

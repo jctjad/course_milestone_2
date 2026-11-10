@@ -1,0 +1,12 @@
+b25a570a3f176a29056f8da5277013c475462cdf107828dcbd08996031f1b464  component-D-staged/D-1-redis.md
+fd6a75eede5555e506c688f756a953b5481df76f08e92b4631030c1e575ad545  component-D-staged/D-2-node-kill.md
+0b1b0952a39a13169533d7295c387c157685cdb7de64b35574ca122315c60020  component-D-staged/D-3-redis-kill.md
+152d59816406d866ec25a2cd263da9a9065e68d728e3e857d6dbcad5f92b3aa5  component-D-staged/D-4-performance.md
+35046bca23ef419c7193f2a5cf828c9d721d7be0fe9be7f06711c2c755caad0e  component-D-staged/checks/check_D_1.sh
+b89bef9e28c1407606672c8bd34eb0db461e371d7b194f3ce55107c93c6c3799  component-D-staged/checks/check_D_2.sh
+84b2cea8e7cb27d72a3a172129b6fdfe1f7a9bfc31492126031f093dfc5239fe  component-D-staged/checks/check_D_3.sh
+9f6365fb099c00ec2b5b2ef0313004f28cce86ca91698ffc8fd352e9eb37400d  component-D-staged/checks/check_D_4.sh
+8ef1f40b90a42225be27d85ca8a055d94ed63c54230abb5a2612dcbc0d31ef5b  component-D-staged/checks/lib.sh
+3b9f1010f0995b027aebe1dcd4ec18ef78fad54f70a77a62ee33959ea5c9a6fe  component-D-staged/checks/perf.py
+604d637988701bdb8290ea4df3c04246ea2fd7527954d8b974c3dd6c62bdaedc  component-D-staged/checks/ws.py
+6a5e8491934548d6d60821f0c1506869c3ec350f4e47ffbdf25bc867f5b365a8  readmes/README-run-1.2-2.2-D.md
